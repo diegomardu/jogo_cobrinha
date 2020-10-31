@@ -2,6 +2,11 @@ let canvas = document.getElementById("snake");
 let context = canvas.getContext("2d");
 let box = 32;
 let cobrinha = [];
+
+// variaveis de direçoes do jogo
+
+let direction = "right";
+
 cobrinha[0]={
     x: 8 * box,
     y: 8 * box
@@ -19,5 +24,25 @@ function criaCobrinha(){
     }
 }
 
-criarBG();
-criaCobrinha();
+function startGame(){
+    criarBG();
+    criaCobrinha();
+    
+    let cobrinhaX = cobrinha[0].x;
+    let cobrinhaY = cobrinha[0].y;
+
+    if(direction == "right") cobrinhaX += box;
+    if(direction == "left") cobrinhaX -= box;
+    if(direction == "up") cobrinhaY -= box;
+    if(direction == "down") cobrinhaY += box;
+
+    cobrinha.pop();
+    let newHead={
+        x: cobrinhaX,
+        y: cobrinhaY
+    }
+
+    cobrinha.unshift(newHead);
+}
+
+let game = setInterval(startGame,100);
