@@ -61,7 +61,14 @@ function startGame(){
     if(direction == "up") cobrinhaY -= box;
     if(direction == "down") cobrinhaY += box;
 
-    cobrinha.pop();
+    if(cobrinhaX != food.x || cobrinhaY != food.y){
+        cobrinha.pop();
+    }
+    else{
+        food.x = Math.floor(Math.random() * 15 + 1) * box;
+        food.y = Math.floor(Math.random() * 15 + 1) * box;
+    }
+
     let newHead={
         x: cobrinhaX,
         y: cobrinhaY
