@@ -7,6 +7,11 @@ let cobrinha = [];
 
 let direction = "right";
 
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
+
 cobrinha[0]={
     x: 8 * box,
     y: 8 * box
@@ -24,6 +29,11 @@ function criaCobrinha(){
     }
 }
 
+function drawFood(){
+    context.fillStyle = "red";
+    context.fillRect(food.x,food.y,box,box);
+}
+
 document.addEventListener("keydown",update); 
 
 function update(event){
@@ -38,12 +48,11 @@ function startGame(){
     if(cobrinha[0].x < 0 && direction == "left") cobrinha[0].x = 16 * box;
     if(cobrinha[0].y > 15 * box && direction == "down") cobrinha[0].y = 0;
     if(cobrinha[0].y < 0 && direction == "up") cobrinha[0].y = 16 * box;
-}
 
-function startGame(){
     criarBG();
     criaCobrinha();
-    
+    drawFood();
+
     let cobrinhaX = cobrinha[0].x;
     let cobrinhaY = cobrinha[0].y;
 
